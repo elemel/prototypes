@@ -16,11 +16,18 @@ def load_tileable_texture(name):
     image = pyglet.resource.texture(name)
     return pyglet.image.TileableTexture.create_for_image(image)
 
+def save_screenshot(name='screenshot.png', format='RGB'):
+    image = pyglet.image.get_buffer_manager().get_color_buffer().image_data
+    image.format = format
+    image.save(name)
+
 class MyWindow(pyglet.window.Window):
     def __init__(self, **kwargs):
         super(MyWindow, self).__init__(**kwargs)
+        self.set_exclusive_mouse(self.fullscreen)
+        self.set_exclusive_keyboard(self.fullscreen)
         rabbyt.set_default_attribs()
-        glClearColor(1, 1, 1, 1)
+        glClearColor(1, 1, 1, 0)
         self.background = load_tileable_texture('background.png')
         self.ship_texture = pyglet.resource.texture('ship.png')
         self.ship = rabbyt.Sprite(self.ship_texture,
@@ -43,8 +50,15 @@ class MyWindow(pyglet.window.Window):
         self.ship.render()
         glPopMatrix()
 
+    def on_key_press(self, symbol, modifiers):
+        if symbol == pyglet.window.key.ESCAPE:
+            self.on_close()
+        if symbol == pyglet.window.key.F12:
+            save_screenshot()
+
 def main():
-    window = MyWindow(fullscreen=('--fullscreen' in sys.argv))
+    fullscreen = '--fullscreen' in sys.argv
+    window = MyWindow(fullscreen=fullscreen)
     pyglet.clock.schedule_interval(window.step, 1. / 60.)
     pyglet.app.run()
 
