@@ -6,7 +6,8 @@ import sys
 def create_shadow(sprite, texture, x=0, y=0, rot=0, red=0, green=0, blue=0,
                   alpha=1):
     shadow = rabbyt.Sprite(texture, scale=sprite.scale)
-    shadow.rgba = red, green, blue, alpha
+    shadow.rgb = red, green, blue
+    shadow.alpha = sprite.attrgetter('alpha') * alpha
     shadow.x = sprite.attrgetter('x') + x
     shadow.y = sprite.attrgetter('y') + y
     shadow.rot = sprite.attrgetter('rot') + rot
@@ -31,6 +32,7 @@ class MyWindow(pyglet.window.Window):
         self.background = load_tileable_texture('background.png')
         self.ship_texture = pyglet.resource.texture('ship.png')
         self.ship = rabbyt.Sprite(self.ship_texture,
+                                  alpha=rabbyt.ease(0, 1, dt=2),
                                   rot=rabbyt.lerp(end=60, dt=1,
                                                   extend='extrapolate'))
         self.shadow = create_shadow(self.ship, self.ship_texture, x=20, y=-30,
@@ -43,6 +45,7 @@ class MyWindow(pyglet.window.Window):
 
     def on_draw(self):
         self.clear()
+        glColor4f(1, 1, 1, 1)
         self.background.blit_tiled(0, 0, 0, self.width, self.height)
         glPushMatrix()
         glTranslatef(self.width // 2, self.height // 2, 0)
