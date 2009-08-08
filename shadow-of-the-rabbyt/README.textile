@@ -1,0 +1,5 @@
+h1. Shadow of the Rabbyt
+
+This prototype uses Rabbyt to display shadows in a top-down 2D game.
+
+!screenshot.png!
