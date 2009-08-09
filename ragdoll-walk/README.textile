@@ -2,4 +2,4 @@ h1. Ragdoll Walk
 
 In this prototype, I learned more about ragdoll physics and character animation. Using ragdolls for animation is trickier than I expected.
 
-!http://github.com/elemel/prototypes/raw/8f7d2db71dc0dc3339030967f126418626342907/ragdoll-walk/screenshot.png!
+!http://lh3.ggpht.com/_E78-sGZtKx8/Sn5aLu5apII/AAAAAAAAAGw/yLOqHqQvyY4/s800/screenshot.png!

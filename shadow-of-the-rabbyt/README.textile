@@ -2,4 +2,4 @@ h1. Shadow of the Rabbyt
 
 This prototype uses Rabbyt to display shadows in a top-down 2D game.
 
-!http://github.com/elemel/prototypes/raw/778decf831cf32a64f28b29b21c1a3fa0f2b8f1e/shadow-of-the-rabbyt/screenshot.png!
+!http://lh4.ggpht.com/_E78-sGZtKx8/Sn5aLn0P7EI/AAAAAAAAAG0/DrklEhx5mhw/s800/screenshot.png!
