@@ -1,0 +1,2 @@
+This prototype demonstrates a technique for connecting a Rabbyt sprite to a
+Box2D body.
