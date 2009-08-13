@@ -15,8 +15,8 @@ def create_world(lower_bound=(-100, -100), upper_bound=(100, 100),
     return b2World(aabb, gravity, do_sleep)
 
 def create_circle_body(world, position=(0, 0), linear_velocity=(0, 0),
-                       angular_velocity=0, radius=1, density=None,
-                       friction=None, restitution=None, user_data=None):
+                       angular_velocity=0, radius=1, density=0,
+                       friction=0.5, restitution=0.5, user_data=None):
     body_def = b2BodyDef()
     body_def.position = position
     body = world.CreateBody(body_def)
@@ -25,20 +25,16 @@ def create_circle_body(world, position=(0, 0), linear_velocity=(0, 0),
     body.userData = user_data
     shape_def = b2CircleDef()
     shape_def.radius = radius
-    if density is not None:
-        shape_def.density = density
-    if friction is not None:
-        shape_def.friction = friction
-    if restitution is not None:
-        shape_def.restitution = restitution
+    shape_def.density = density
+    shape_def.friction = friction
+    shape_def.restitution = restitution
     body.CreateShape(shape_def)
-    if density is not None:
-        body.SetMassFromShapes()
+    body.SetMassFromShapes()
     return body
 
 def create_box_body(world, position=(0, 0), linear_velocity=(0, 0),
                     angular_velocity=0, half_width=1, half_height=1, angle=0,
-                    density=None, friction=None, restitution=None,
+                    density=0, friction=0.5, restitution=0.5,
                     user_data=None):
     body_def = b2BodyDef()
     body_def.position = position
@@ -48,15 +44,11 @@ def create_box_body(world, position=(0, 0), linear_velocity=(0, 0),
     body.userData = user_data
     shape_def = b2PolygonDef()
     shape_def.SetAsBox(half_width, half_height, position, angle)
-    if density is not None:
-        shape_def.density = density
-    if friction is not None:
-        shape_def.friction = friction
-    if restitution is not None:
-        shape_def.restitution = restitution
+    shape_def.density = density
+    shape_def.friction = friction
+    shape_def.restitution = restitution
     body.CreateShape(shape_def)
-    if density is not None:
-        body.SetMassFromShapes()
+    body.SetMassFromShapes()
     return body
 
 def rad_to_deg(angle):
