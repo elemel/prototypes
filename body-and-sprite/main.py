@@ -66,7 +66,12 @@ def connect_sprite_to_body(sprite, body):
     sprite.x = lambda: body.position.x
     sprite.y = lambda: body.position.y
     sprite.rot = lambda: rad_to_deg(body.angle)
- 
+
+def save_screenshot(name='screenshot.png', format='RGB'):
+    image = pyglet.image.get_buffer_manager().get_color_buffer().image_data
+    image.format = format
+    image.save(name)
+
 def disconnect_sprite_from_body(sprite, body):
     end_x = body.position.x + body.linearVelocity.x
     end_y = body.position.y + body.linearVelocity.y
@@ -114,6 +119,12 @@ class MyWindow(pyglet.window.Window):
     def step(self, dt):
         self.time += dt
         self.world.Step(dt, 10, 10)
+
+    def on_key_press(self, symbol, modifiers):
+        if symbol == pyglet.window.key.ESCAPE:
+            self.on_close()
+        if symbol == pyglet.window.key.F12:
+            save_screenshot()
 
 def main():
     fullscreen = '--fullscreen' in sys.argv
