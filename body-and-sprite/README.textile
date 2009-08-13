@@ -1,2 +1,4 @@
 This prototype demonstrates a technique for connecting a Rabbyt sprite to a
 Box2D body.
+
+!http://lh4.ggpht.com/_E78-sGZtKx8/SoRUs0-sJQI/AAAAAAAAAHA/9t2FIrHBeDw/s144/screenshot.png!
